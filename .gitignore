@@ -1,0 +1,9 @@
+*.zip
+*.txt
+2019eve/
+2018eve/
+2020eve/
+.ipynb_checkpoints/
+._*
+Rosters/
+pybaseball/
