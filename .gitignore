@@ -8,4 +8,6 @@
 Rosters/
 pybaseball/
 api_keys.py
-2019_statcast_pbp
+2019_statcast_pbp.csv
+MLB-StatsAPI
+__pycache__/
