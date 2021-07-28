@@ -4,7 +4,20 @@ the statcast data does seem to have everything else I'd need to navigate the inf
 
 WORKFLOW:
 
-for every row in statcast - grab game_pk - dump into statsapi.schedule - grab starttime, venue - translate venue into lat, long with coord.csv - dump into visual crossing - grab weather info - dump starttime, venue, and weather info back into statcast df - grab pitcher id from df - run through pybaseball.statcast_pitcher to grab "relevent" stats through DAY BEFORE GAME - dump stats in df - grab batter id from df - run through pybaseball.statcast_batter to grab "relevent" stata through DAY BEFORE GAME - dump stats in df
+- for every row in statcast 
+- grab game_pk 
+- dump into statsapi.schedule 
+- grab starttime, venue 
+- translate venue into lat, long with coord.csv 
+- dump into visual crossing 
+- grab weather info 
+- dump starttime, venue, and weather info back into statcast df 
+- grab pitcher id from df 
+- run through pybaseball.statcast_pitcher to grab "relevent" stats through DAY BEFORE GAME 
+- dump stats in df 
+- grab batter id from df 
+- run through pybaseball.statcast_batter to grab "relevent" stata through DAY BEFORE GAME 
+- dump stats in df
 
 IMPLEMENT CACHING - have relevent parts of code check their caches first:
 
