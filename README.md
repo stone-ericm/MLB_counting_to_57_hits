@@ -4,7 +4,7 @@
 
 ## Goal
 
-In this project I aim to win MLB's [Beat the Streak](https://www.mlb.com/apps/beat-the-streak) fantasy baseball content. To do that, I have to pick at least one baseball player every day who I think will get at least one hit. If I'm right for 57 days in a row, I win the contest and with it the $5.6 million cash prize. All the work described below can be seen in [notebook.ipynb](https://github.com/stonehengee/phase-3-project/blob/main/notebook.ipynb]) and the data for baseball venue locations can be found in [Parks.csv](https://github.com/stonehengee/phase-3-project/blob/main/Parks.csv).
+In this project I aim to win MLB's [Beat the Streak](https://www.mlb.com/apps/beat-the-streak) fantasy baseball content. To do that, I have to pick at least one baseball player every day who I think will get at least one hit. If I'm right for 57 days in a row, I win the contest and with it the $5.6 million cash prize. All the work described below can be seen in [notebook.ipynb](https://github.com/stonehengee/phase-3-project/blob/main/notebook.ipynb) and the data for baseball venue locations can be found in [Parks.csv](https://github.com/stonehengee/phase-3-project/blob/main/Parks.csv).
 
 ## Data
 
