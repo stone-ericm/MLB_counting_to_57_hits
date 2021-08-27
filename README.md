@@ -1,32 +1,48 @@
-7.24 - I started by deriving game by game data from retrosheets play by play data. This also included weather data which seems important based on the beat the streak subreddit (temp, sun, winddir, windspeed). Unfortunately this dataset doesn't include 2021. After looking around at various options including a baseball-reference scrape, at this point I believe my best option is to use the statcast api (undocumented, smh) through the pybaseball library which seems popular among baseball researchers. At this moment I've saved the pitch by pitch data for 2019 in a csv. I'll likely want to suplmement this data with weather data to make up for the loss of such.
+# Counting to 57
 
-the statcast data does seem to have everything else I'd need to navigate the info properly with the exception of game times and daynight. 
+## [Presentation](https://github.com/stonehengee/phase-3-project/blob/main/README.md])
 
-WORKFLOW:
+## Goal
 
-- for every row in statcast 
-- grab game_pk 
-- dump into statsapi.schedule 
-- grab starttime, venue 
-- translate venue into lat, long with coord.csv 
-- dump into visual crossing 
-- grab weather info 
-- dump starttime, venue, and weather info back into statcast df 
-- grab pitcher id from df 
-- run through pybaseball.statcast_pitcher to grab "relevent" stats through DAY BEFORE GAME 
-- dump stats in df 
-- grab batter id from df 
-- run through pybaseball.statcast_batter to grab "relevent" stata through DAY BEFORE GAME 
-- dump stats in df
+In this project I aim to win MLB's [Beat the Streak](https://www.mlb.com/apps/beat-the-streak) fantasy baseball content. To do that, I have to pick at least one baseball player every day who I think will get at least one hit. If I'm right for 57 days in a row, I win the contest and with it the $5.6 million cash prize.
 
-IMPLEMENT CACHING - have relevent parts of code check their caches first:
+## Data
 
-save game_pk results and their matching starttime, location, weather - no need to ever clear
+To accomplish this I gathered data from [Statcast](https://baseballsavant.mlb.com/statcast_search), [Visual Crossing](https://www.visualcrossing.com/) and the MLB Stats API. I utilized [pybaseball](https://github.com/jldbc/pybaseball) and the [MLB-StatsAPI library](https://github.com/toddrob99/MLB-StatsAPI) in addition to traditional data science libraries like numpy and Pandas.
 
-save pitcher and batter stats - clear after every day (not game because you can't wager between double headers)
+From Statcast, I gathered pitch-by-pitch data from every game between 2017 and June 30th, 2021. To supplement this, I used the MLB-StatsAPI to gather certain pieces of metadata about each game which wasn't already included in Statcast, most notably probable pitchers. To this, I then added weather data from [Visual Crossing](https://www.visualcrossing.com/). Additionally I gathered latitude, longitude, and altitude data from Wikipedia, Google, as well as [traveling-baseball-fan-problem](https://github.com/sertalpbilal/traveling-baseball-fan-problem/blob/master/data/coords.csv).
 
+Lastly I used all of this data to derive certain statistics I thought might be useful for modeling, including:
 
-according to retrosheets the day/night cutoff is 5PM
+- For batters
+	- Plate appearances per game
+	- Hits per plate appearance against right-handed and left-handed pitchers
+	- Average launch angle
+	- Average launch speed
+- For pitchers
+	 - Average plate appearances faced per game played
+	 - Average hits given up per inning
+	 - Hits given up per plate appearance against right-handed and left-handed batters
 
+## Results
 
-stadium coordinates from https://github.com/sertalpbilal/traveling-baseball-fan-problem/blob/master/data/coords.csv
+Before running any models, I checked how successful it would be to use the metrics I already had to determine the best player pick for each day. My best result came from ordering each day's batters by their plate appearances per game over the last 2 years. This gave me a daily pick success rate of roughly 62.5% with an all time best streak of 8 days.
+
+Overall my best model was a Decision Tree where the predicted hitters were then sorted by plate appearances per game. This gave me a streak of 14 days with a daily success rate of about 71.4%.
+
+## Conclusion
+
+While all this is a good start, this project is nowhere near finished. While working through the data, I had to sacrifice many possible metrics and influences which could possibly increase my chances. Given more time and resources, I'd add in features that address areas such as:
+
+- More in depth batter/pitcher match-ups
+- Pitch types, velocity, and movement
+- Bullpens (in addition to probable starting pitchers)
+- The ability to pick two players on a given day, should a certain odds threshold be met
+- Excluding most pitchers as their strengths lie in areas other than hitting (with the exception of two-way players such as Shohei Ohtani)
+
+## Sources
+
+- [Statcast](https://baseballsavant.mlb.com/statcast_search)
+- [Visual Crossing](https://www.visualcrossing.com/)
+- [MLB-StatsAPI](https://statsapi.mlb.com/api)
+- [traveling-baseball-fan-problem](https://github.com/sertalpbilal/traveling-baseball-fan-problem/blob/master/data/coords.csv)
