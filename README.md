@@ -66,3 +66,16 @@ Using a new and very roughly implemented recommendation engine on the ongoing_de
   - 'Austin Hedges - Cleveland Indians': 1,
   - 'Lewis Brinson - Miami Marlins': 1,
   - 'Antonio Senzatela - Colorado Rockies': 1
+- 9/11/2021
+  - 'Trevor Stephan - Cleveland Indians': 1,
+  - 'Mark Canha - Oakland Athletics': 3,
+  - **'Corey Seager - Los Angeles Dodgers': 9,**
+  - 'Sean Murphy - Oakland Athletics': 1,
+  - 'Mookie Betts - Los Angeles Dodgers': 4,
+  - 'Adam Wainwright - St. Louis Cardinals': 2,
+  - 'Raimel Tapia - Colorado Rockies': 1,
+  - 'Trey Mancini - Baltimore Orioles': 1,
+  - 'Andres Gimenez - Cleveland Indians': 2,
+  - 'Luis Arraez - Minnesota Twins': 1,
+  - 'Lewin Diaz - Miami Marlins': 1,
+  - 'Zack Wheeler - Philadelphia Phillies': 1
