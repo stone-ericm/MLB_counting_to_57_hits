@@ -50,7 +50,7 @@ While all this is a good start, this project is nowhere near finished. While wor
 
 ## Latest Updates
 
-Using a new and very roughly implemented recommendation engine on the ongoing_dev branch, I'm now generating picks based on the consensus of the models implemented. Below are the choices each model made, how many picked each player, and whether that consensus was correct (green), wrong (red), or hasn't happened yet (yellow):
+Using a new and very roughly implemented recommendation engine on the ongoing_dev branch, I'm now generating picks based on the consensus of the models implemented. Below are the choices each model made, how many picked each player, and whether that consensus was correct (italic), wrong (strikethrough), or hasn't happened yet (bold):
 
 - 9/10/2021 
   - 'Bailey Ober - Minnesota Twins': 1,
