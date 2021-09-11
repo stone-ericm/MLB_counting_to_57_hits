@@ -55,7 +55,7 @@ Using a new and very roughly implemented recommendation engine on the ongoing_de
 - 9/10/2021 
   - 'Bailey Ober - Minnesota Twins': 1,
   - 'Whit Merrifield - Kansas City Royals': 1,
-  - <mark>'Corey Seager - Los Angeles Dodgers': 9,</mark>
+  - **'Corey Seager - Los Angeles Dodgers': 9,**
   - 'Sean Murphy - Oakland Athletics': 1,
   - 'Mookie Betts - Los Angeles Dodgers': 4,
   - 'Adam Wainwright - St. Louis Cardinals': 2,
