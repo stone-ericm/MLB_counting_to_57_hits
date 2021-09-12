@@ -67,15 +67,38 @@ Using a new and very roughly implemented recommendation engine on the ongoing_de
   - 'Lewis Brinson - Miami Marlins': 1,
   - 'Antonio Senzatela - Colorado Rockies': 1
 - 9/11/2021
-  - 'Trevor Stephan - Cleveland Indians': 1,
-  - 'Mark Canha - Oakland Athletics': 3,
-  - **'Corey Seager - Los Angeles Dodgers': 9,**
-  - 'Sean Murphy - Oakland Athletics': 1,
+  - 'Adam Wainwright - St. Louis Cardinals': 3,
   - 'Mookie Betts - Los Angeles Dodgers': 4,
-  - 'Adam Wainwright - St. Louis Cardinals': 2,
-  - 'Raimel Tapia - Colorado Rockies': 1,
-  - 'Trey Mancini - Baltimore Orioles': 1,
-  - 'Andres Gimenez - Cleveland Indians': 2,
-  - 'Luis Arraez - Minnesota Twins': 1,
-  - 'Lewin Diaz - Miami Marlins': 1,
-  - 'Zack Wheeler - Philadelphia Phillies': 1
+  - ~~'Corey Seager - Los Angeles Dodgers': 9,~~
+  - 'Max Kepler - Minnesota Twins': 1,
+  - 'Alcides Escobar - Washington Nationals': 1,
+  - 'Brady Singer - Kansas City Royals': 1,
+  - 'Max Muncy - Los Angeles Dodgers': 1,
+  - 'Yu Chang - Cleveland Indians': 3,
+  - 'Ozzie Albies - Atlanta Braves': 2,
+  - 'Franmil Reyes - Cleveland Indians': 1,
+  - 'Alex Colome - Minnesota Twins': 1
+- 9/11/2021
+  - 'Adam Wainwright - St. Louis Cardinals': 3,
+  - 'Mookie Betts - Los Angeles Dodgers': 4,
+  - ~~'Corey Seager - Los Angeles Dodgers': 9,~~
+  - 'Max Kepler - Minnesota Twins': 1,
+  - 'Alcides Escobar - Washington Nationals': 1,
+  - 'Brady Singer - Kansas City Royals': 1,
+  - 'Max Muncy - Los Angeles Dodgers': 1,
+  - 'Yu Chang - Cleveland Indians': 3,
+  - 'Ozzie Albies - Atlanta Braves': 2,
+  - 'Franmil Reyes - Cleveland Indians': 1,
+  - 'Alex Colome - Minnesota Twins': 1
+- 9/12/2021
+  - 'Adam Wainwright - St. Louis Cardinals': 3,
+  - 'Mookie Betts - Los Angeles Dodgers': 4,
+  - *'Corey Seager - Los Angeles Dodgers': 9,*
+  - 'Sergio Romo - Oakland Athletics': 1,
+  - 'Alcides Escobar - Washington Nationals': 2,
+  - 'Luke Voit - New York Yankees': 1,
+  - 'Austin Wynns - Baltimore Orioles': 1,
+  - 'Max Kepler - Minnesota Twins': 2,
+  - 'Ben Rortvedt - Minnesota Twins': 2,
+  - 'Rob Refsnyder - Minnesota Twins': 1,
+  - 'Vladimir Guerrero - Toronto Blue Jays': 1}
