@@ -1,6 +1,6 @@
 # Counting to 57
 
-## [Presentation](https://github.com/stonehengee/phase-3-project/blob/main/README.md])
+## [Presentation]([https://github.com/stonehengee/phase-3-project/blob/main/Presentation.pdf])
 
 ## Goal
 
