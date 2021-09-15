@@ -45,6 +45,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\picks.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\test.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\untouched_2017_statcast_pbp.csv">
           <value>
             <Attribute>
