@@ -11,3 +11,4 @@ api_keys.py
 *statcast_pbp.csv
 MLB-StatsAPI
 __pycache__/
+.idea/
