@@ -12,3 +12,4 @@ api_keys.py
 MLB-StatsAPI
 __pycache__/
 .idea/
+.*
