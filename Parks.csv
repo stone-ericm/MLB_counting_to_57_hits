@@ -2,6 +2,7 @@ NAME,CITY,STATE,Latitude,Longitude,Altitude
 Riverside Park,East Albany,NY,42.642295,-73.745198,14
 Columbia Park,Altoona,PA,40.494582,-78.411164,1129
 Angel Stadium,Anaheim,CA,33.80029,-117.882685,154
+Angel Stadium of Anaheim,Anaheim,CA,33.80029,-117.882685,154
 Arlington Stadium,Arlington,TX,32.755974,-97.084778,552
 Globe Life Park in Arlington,Arlington,TX,32.751164,-97.082546,549
 Globe Life Field,Arlington,,32.751164,-97.082546,549
@@ -45,6 +46,7 @@ South Side Park III,Chicago,IL,41.824857,-87.632664,594
 Comiskey Park I,Chicago,IL,41.83201,-87.634025,594
 Wrigley Field,Chicago,IL,41.948314,-87.655397,599
 Guaranteed Rate Field,Chicago,IL,41.829892,-87.633703,594
+U.S. Cellular Field,Chicago,IL,41.829892,-87.633703,594
 Lincoln Park Grounds,Cincinnati,OH,39.109827,-84.534652,513
 Avenue Grounds,Cincinnati,OH,39.142878,-84.54647,480
 Bank Street Grounds,Cincinnati,OH,39.121126,-84.536923,496
@@ -166,6 +168,7 @@ Washington Park IV,New York,NY,40.67468,-73.985936,26
 Citi Field,New York,NY,40.757134,-73.84584,13
 Yankee Stadium,New York,NY,40.829586,-73.926413,11
 Oakland Coliseum,Oakland,CA,37.751619,-122.200451,0
+O.co Coliseum,Oakland,CA,37.751619,-122.200451,0
 TD Ameritrade Park,Omaha,NE,41.267,-95.932,989
 Pendleton Park,Cincinnati,OH,39.117813,-84.447058,476
 Jefferson Street Grounds,Philadelphia,PA,39.977635,-75.178031,104
@@ -205,9 +208,11 @@ Petco Park,San Diego,CA,32.70753,-117.157056,14
 Sicks' Stadium,Seattle,WA,47.579199,-122.297403,61
 Kingdome,Seattle,WA,47.595133,-122.331639,17
 T-Mobile Park,Seattle,WA,47.591443,-122.332283,17
+Safeco Field,Seattle,WA,47.591443,-122.332283,17
 Seals Stadium,San Francisco,CA,37.766774,-122.409337,61
 Candlestick Park,San Francisco,CA,37.713297,-122.38627,135
 Oracle Park,San Francisco,CA,37.778324,-122.389221,8
+AT&T Park,San Francisco,CA,37.778324,-122.389221,8
 Estadio Hiram Bithorn,San Juan,PR,18.416612,-66.072787,10
 Ft. Street Grounds,St. Paul,MN,44.93322,-93.122029,791
 Hampden Park Race Track,Springfield,MA,42.107144,-72.605784,67
@@ -261,3 +266,4 @@ Worcester Driving Park Grounds,Worcester,MA,42.268721,-71.812404,496
 Sahlen Field,Buffalo,NY,42.881306,-78.874278,600
 TD Ballpark,Dunedin,FL,28.003611,-82.786389,30
 Field of Dreams,Dyersville,IA,42.49806118,-91.05462572,951
+Hiram Bithorn Stadium,San Juan,PR,18.417349094408582,-66.07303847671515,26
