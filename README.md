@@ -61,7 +61,7 @@ python retrosheet_cli.py init --start-year 2020 --end-year 2024
 
 ```bash
 # Get enhanced hit prediction for a current game
-python main.py --player "Aaron Judge" --pitcher "Gerrit Cole" --park "Yankee Stadium"
+python main.py --player "Francisco Lindor" --pitcher "Jacob deGrom" --park "Citi Field"
 
 # Use the historical CLI for insights
 python retrosheet_cli.py enhance --park BOS07 --temp 75 --wind-speed 10
