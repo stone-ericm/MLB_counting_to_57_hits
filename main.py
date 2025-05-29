@@ -4546,88 +4546,93 @@ async def main(tracker=None, min_recent_pa=15, min_season_pa=0):
     
     start_time = time.time()
     
-    # Calculate hit probabilities for all players
-    probabilities = await tracker.get_todays_hit_probabilities(min_recent_pa=min_recent_pa, min_season_pa=min_season_pa)
-    
-    end_time = time.time()
-    execution_time = end_time - start_time
-    
-    logger.info(f"Probability calculations completed in {execution_time:.2f} seconds")
-    logger.info(f"Number of predictions: {len(probabilities)}")
-    
-    # Configuration information
-    logger.info("\n=== CONFIGURATION ===")
-    logger.info(f"Minimum recent plate appearances: {min_recent_pa}")
-    if min_season_pa > 0:
-        logger.info(f"Minimum season plate appearances: {min_season_pa}")
-    logger.info(f"Prediction date: {tracker.prediction_date.strftime('%A, %B %d, %Y')}")
-    logger.info(f"Total qualified players: {len(probabilities)}")
-    
-    if not probabilities:
-        logger.warning("No players found meeting minimum PA requirements.")
-        return
-    
-    logger.info("\n=== TOP 10 HIGHEST HIT PROBABILITY PLAYERS ===")
-    print("\n=== TOP 10 HIGHEST HIT PROBABILITY PLAYERS ===")
-    
-    # Sort by probability (descending)
-    probabilities.sort(key=lambda x: x['probability'], reverse=True)
-    
-    # Display top 10 players with detailed analysis
-    for i, prob in enumerate(probabilities[:10], 1):
-        # Get detailed stats for the player
-        season_stats = tracker.get_player_season_stats(prob['player_id'])
-        recent_perf = tracker.get_recent_performance(prob['player_id'])
+    try:
+        # Calculate hit probabilities for all players
+        probabilities = await tracker.get_todays_hit_probabilities(min_recent_pa=min_recent_pa, min_season_pa=min_season_pa)
         
-        # Calculate contributing factors
-        ballpark_factor = tracker.ballpark_factors.get(prob['ballpark'], 1.0)
-        weather_impact = prob.get('weather_impact', 1.0)
-        matchup_advantage = prob.get('matchup_advantage', 1.0)
+        end_time = time.time()
+        execution_time = end_time - start_time
         
-        # Print detailed analysis
-        logger.info(f"\n{i}. {prob['player_name']} ({prob['team']})")
-        logger.info(f"   Overall Hit Probability: {prob['probability']:.3f}")
-        logger.info(f"   Game: {prob['game_info']} at {prob.get('game_time', 'TBD')}")
-        logger.info(f"   Ballpark: {prob['ballpark']} (Factor: {ballpark_factor:.3f})")
-        logger.info(f"   Opposing Pitcher: {prob.get('opposing_pitcher', 'TBD')}")
+        logger.info(f"Probability calculations completed in {execution_time:.2f} seconds")
+        logger.info(f"Number of predictions: {len(probabilities)}")
         
-        # Show doubleheader advantage if applicable
-        doubleheader_advantage = prob.get('doubleheader_advantage', 1.0)
-        doubleheader_explanation = prob.get('doubleheader_explanation', '')
+        # Configuration information
+        logger.info("\n=== CONFIGURATION ===")
+        logger.info(f"Minimum recent plate appearances: {min_recent_pa}")
+        if min_season_pa > 0:
+            logger.info(f"Minimum season plate appearances: {min_season_pa}")
+        logger.info(f"Prediction date: {tracker.prediction_date.strftime('%A, %B %d, %Y')}")
+        logger.info(f"Total qualified players: {len(probabilities)}")
         
-        if doubleheader_advantage > 1.0:
-            logger.info(f"   🎯 DOUBLEHEADER ADVANTAGE: {doubleheader_advantage:.3f}x factor ({doubleheader_explanation})")
-        elif 'doubleheader' in doubleheader_explanation.lower() and doubleheader_advantage == 1.0:
-            logger.info(f"   ℹ️  Doubleheader Status: {doubleheader_explanation}")
-        # If no doubleheader, don't show anything
+        if not probabilities:
+            logger.warning("No players found meeting minimum PA requirements.")
+            return
         
-        logger.info("\n   Season Stats:")
-        if not season_stats.empty:
-            hits = season_stats['hits'].iloc[0]
-            pa = season_stats['plateAppearances'].iloc[0]
-            # Calculate average on-the-fly from raw stats
-            avg = hits / pa if pa > 0 else 0.0
-            logger.info(f"    - AVG: {avg:.3f}")
-            logger.info(f"    - Hits: {hits}")
-            logger.info(f"    - PA: {pa}")
+        logger.info("\n=== TOP 10 HIGHEST HIT PROBABILITY PLAYERS ===")
+        print("\n=== TOP 10 HIGHEST HIT PROBABILITY PLAYERS ===")
         
-        logger.info("\n   Recent Performance (Last 30 days):")
-        logger.info(f"    - Hits: {recent_perf['hits']}")
-        logger.info(f"    - Plate Appearances: {recent_perf['plate_appearances']}")
-        logger.info(f"    - Average: {recent_perf['recent_avg']:.3f}")
-        logger.info("")
-    
-    # Summary statistics
-    avg_probability = sum(p['probability'] for p in probabilities) / len(probabilities)
-    max_probability = probabilities[0]['probability']
-    min_probability = probabilities[-1]['probability']
-    
-    logger.info(f"\n=== SUMMARY STATISTICS ===")
-    logger.info(f"Average Hit Probability: {avg_probability:.3f}")
-    logger.info(f"Highest Probability: {max_probability:.3f} ({probabilities[0]['player_name']})")
-    logger.info(f"Lowest Probability: {min_probability:.3f} ({probabilities[-1]['player_name']})")
-    
-    logger.info(f"\nTotal execution time: {execution_time:.2f} seconds")
+        # Sort by probability (descending)
+        probabilities.sort(key=lambda x: x['probability'], reverse=True)
+        
+        # Display top 10 players with detailed analysis
+        for i, prob in enumerate(probabilities[:10], 1):
+            # Get detailed stats for the player
+            season_stats = tracker.get_player_season_stats(prob['player_id'])
+            recent_perf = tracker.get_recent_performance(prob['player_id'])
+            
+            # Calculate contributing factors
+            ballpark_factor = tracker.ballpark_factors.get(prob['ballpark'], 1.0)
+            weather_impact = prob.get('weather_impact', 1.0)
+            matchup_advantage = prob.get('matchup_advantage', 1.0)
+            
+            # Print detailed analysis
+            logger.info(f"\n{i}. {prob['player_name']} ({prob['team']})")
+            logger.info(f"   Overall Hit Probability: {prob['probability']:.3f}")
+            logger.info(f"   Game: {prob['game_info']} at {prob.get('game_time', 'TBD')}")
+            logger.info(f"   Ballpark: {prob['ballpark']} (Factor: {ballpark_factor:.3f})")
+            logger.info(f"   Opposing Pitcher: {prob.get('opposing_pitcher', 'TBD')}")
+            
+            # Show doubleheader advantage if applicable
+            doubleheader_advantage = prob.get('doubleheader_advantage', 1.0)
+            doubleheader_explanation = prob.get('doubleheader_explanation', '')
+            
+            if doubleheader_advantage > 1.0:
+                logger.info(f"   🎯 DOUBLEHEADER ADVANTAGE: {doubleheader_advantage:.3f}x factor ({doubleheader_explanation})")
+            elif 'doubleheader' in doubleheader_explanation.lower() and doubleheader_advantage == 1.0:
+                logger.info(f"   ℹ️  Doubleheader Status: {doubleheader_explanation}")
+            # If no doubleheader, don't show anything
+            
+            logger.info("\n   Season Stats:")
+            if not season_stats.empty:
+                hits = season_stats['hits'].iloc[0]
+                pa = season_stats['plateAppearances'].iloc[0]
+                # Calculate average on-the-fly from raw stats
+                avg = hits / pa if pa > 0 else 0.0
+                logger.info(f"    - AVG: {avg:.3f}")
+                logger.info(f"    - Hits: {hits}")
+                logger.info(f"    - PA: {pa}")
+            
+            logger.info("\n   Recent Performance (Last 30 days):")
+            logger.info(f"    - Hits: {recent_perf['hits']}")
+            logger.info(f"    - Plate Appearances: {recent_perf['plate_appearances']}")
+            logger.info(f"    - Average: {recent_perf['recent_avg']:.3f}")
+            logger.info("")
+        
+        # Summary statistics
+        avg_probability = sum(p['probability'] for p in probabilities) / len(probabilities)
+        max_probability = probabilities[0]['probability']
+        min_probability = probabilities[-1]['probability']
+        
+        logger.info(f"\n=== SUMMARY STATISTICS ===")
+        logger.info(f"Average Hit Probability: {avg_probability:.3f}")
+        logger.info(f"Highest Probability: {max_probability:.3f} ({probabilities[0]['player_name']})")
+        logger.info(f"Lowest Probability: {min_probability:.3f} ({probabilities[-1]['player_name']})")
+        
+        logger.info(f"\nTotal execution time: {execution_time:.2f} seconds")
+        
+    finally:
+        # Clean up async resources
+        await tracker.cleanup()
 
 def configure_logging():
     """Configure logging for the application"""
