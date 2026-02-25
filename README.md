@@ -1,48 +1,58 @@
-# Counting to 57
+# MLB Counting to 57 Hits
 
-## [Presentation](https://github.com/stonehengee/counting_to_57/blob/main/Presentation.pdf)
+A statistical analysis of whether MLB's "Beat the Streak" contest can be won — and why it almost certainly cannot.
 
-## Goal
+## The Challenge
 
-In this project I aim to win MLB's [Beat the Streak](https://www.mlb.com/apps/beat-the-streak) fantasy baseball contest. To do that, I have to pick at least one baseball player every day who I think will get at least one hit. If I'm right for 57 days in a row, I win the contest and with it the $5.6 million cash prize. All the work described below can be seen in [notebook.ipynb](https://github.com/stonehengee/counting_to_57/blob/main/notebook.ipynb) and the data for baseball venue locations can be found in [Parks.csv](https://github.com/stonehengee/counting_to_57/blob/main/Parks.csv).
+MLB's Beat the Streak is a free fantasy contest with a $5.6 million prize. The rules are simple: pick one player each day who you believe will record at least one hit. String together 57 correct picks in a row — beating Joe DiMaggio's 56-game hitting streak — and you win.
 
-## Data
+Since the contest launched in 2001, nobody has won. This project investigates why.
 
-To accomplish this I gathered data from [Statcast](https://baseballsavant.mlb.com/statcast_search), [Visual Crossing](https://www.visualcrossing.com/) and the MLB Stats API. I utilized [pybaseball](https://github.com/jldbc/pybaseball) and the [MLB-StatsAPI library](https://github.com/toddrob99/MLB-StatsAPI) in addition to traditional data science libraries like numpy and Pandas.
+## Approach
 
-From Statcast, I gathered pitch-by-pitch data from every game between 2017 and June 30th, 2021. To supplement this, I used the MLB-StatsAPI to gather certain pieces of metadata about each game which wasn't already included in Statcast, most notably probable pitchers. To this, I then added weather data from [Visual Crossing](https://www.visualcrossing.com/). Additionally I gathered latitude, longitude, and altitude data from Wikipedia, Google, as well as [traveling-baseball-fan-problem](https://github.com/sertalpbilal/traveling-baseball-fan-problem/blob/master/data/coords.csv).
+We built predictive models to identify the best hitter to pick on any given day, drawing from three data sources:
 
-Lastly I used all of this data to derive certain statistics I thought might be useful for modeling, including:
+- **Statcast pitch-by-pitch data (2017-2021)** — plate discipline, contact rates, batted ball quality
+- **MLB Stats API** — game logs, matchup history, platoon splits
+- **Visual Crossing weather data + venue locations** — temperature, wind, humidity, and park factors (Parks.csv)
 
-- For batters
-	- Plate appearances per game
-	- Hits per plate appearance against right-handed and left-handed pitchers
-	- Average launch angle
-	- Average launch speed
-- For pitchers
-	 - Average plate appearances faced per game played
-	 - Average hits given up per inning
-	 - Hits given up per plate appearance against right-handed and left-handed batters
+We tested several classifiers (Decision Trees, Random Forests, Logistic Regression) trained on per-game features, with the target variable being whether a player recorded at least one hit in a given game. Models were sorted and filtered by plate appearances per game to favor everyday hitters with more opportunities to get a hit.
 
-## Results
+## Key Results
 
-Before running any models, I checked how successful it would be to use the metrics I already had to determine the best player pick for each day. My best result came from ordering each day's batters by their plate appearances per game over the last 2 years. This gave me a daily pick success rate of roughly 62.5% with an all time best streak of 8 days.
+Our best-performing model — a Decision Tree filtered by plate appearances per game — achieved:
 
-Overall my best model was a Decision Tree where the predicted hitters were then sorted by plate appearances per game. This gave me a streak of 14 days with a daily success rate of about 71.4%.
+- **14-day simulated streak** (best run)
+- **~71.4% daily success rate** across the evaluation period
 
-## Conclusion
+A 71.4% daily success rate sounds strong. It is not enough.
 
-While all this is a good start, this project is nowhere near finished. While working through the data, I had to sacrifice many possible metrics and influences which could possibly increase my chances. Given more time and resources, I'd add in features that address areas such as:
+The probability of hitting 57 correct picks in a row at 71.4% per day:
 
-- More in depth batter/pitcher match-ups
-- Pitch types, velocity, and movement
-- Bullpens (in addition to probable starting pitchers)
-- The ability to pick two players on a given day, should a certain odds threshold be met
-- Excluding most pitchers as their strengths lie in areas other than hitting (with the exception of two-way players such as Shohei Ohtani)
+```
+0.714^57 = 0.0000000007  (~0.00000007%)
+```
 
-## Sources
+For context, you would need a **daily success rate above 98%** to have even a coin-flip chance of completing a 57-day streak. No model we tested — and likely no model built on public data — comes close to that threshold.
 
-- [Statcast](https://baseballsavant.mlb.com/statcast_search)
-- [Visual Crossing](https://www.visualcrossing.com/)
-- [MLB-StatsAPI](https://statsapi.mlb.com/api)
-- [traveling-baseball-fan-problem](https://github.com/sertalpbilal/traveling-baseball-fan-problem/blob/master/data/coords.csv)
+The mathematical structure of the problem, not the quality of the model, is what makes Beat the Streak essentially unwinnable.
+
+## Data Sources
+
+| Source | Description |
+|--------|-------------|
+| [Statcast (Baseball Savant)](https://baseballsavant.mlb.com/statcast_search) | Pitch-by-pitch data, 2017-2021 |
+| [MLB Stats API](https://statsapi.mlb.com) | Game logs, player stats, matchup data |
+| [Visual Crossing](https://www.visualcrossing.com/) | Historical weather data by venue and date |
+| Parks.csv | Venue names and geographic coordinates |
+
+## Getting Started
+
+The analysis lives in two Jupyter notebooks:
+
+```bash
+pip install jupyter pandas scikit-learn numpy
+jupyter notebook main.ipynb
+```
+
+`main.ipynb` contains the primary modeling pipeline. `notebook.ipynb` contains supporting exploration and data preparation. `Presentation.pdf` summarizes the findings.
