@@ -13,3 +13,6 @@ MLB-StatsAPI
 __pycache__/
 .idea/
 .*
+!.env.example
+!.gitignore
+!.gitattributes

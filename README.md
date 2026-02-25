@@ -56,3 +56,18 @@ jupyter notebook main.ipynb
 ```
 
 `main.ipynb` contains the primary modeling pipeline. `notebook.ipynb` contains supporting exploration and data preparation. `Presentation.pdf` summarizes the findings.
+
+### API Key
+
+The weather data collection in `notebook.ipynb` requires a [Visual Crossing](https://www.visualcrossing.com/) API key. Copy `.env.example` to `.env` and add your key:
+
+```bash
+cp .env.example .env
+# Edit .env and replace 'your-key-here' with your actual API key
+```
+
+Then set the environment variable before running the notebook:
+
+```bash
+export VISUAL_CROSSING_API_KEY=your-key-here
+```
